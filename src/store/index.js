@@ -5,11 +5,42 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    applicationData: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      nationalId: "",
+      kraPin: "",
+      companyName: "",
+      companyLocation: "",
+      companyRevenue: ""
+    },
+    loading: false,
+    activeStep: 1
   },
   mutations: {
   },
-  actions: {
+  getters: {
+    firstStepData: state => {
+      
+    },
+    secondStepData: state => {
+
+    },
+    thirdStepData: state => {
+
+    },
+    updateLoading: state => {
+      
+    },
+    updateActiveStep: state => {
+      
+    }
   },
-  modules: {
-  }
+  actions: {
+    finishApplication: () => {
+      
+    }
+  },
 })

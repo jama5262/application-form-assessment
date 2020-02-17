@@ -1,12 +1,12 @@
 <template>
-  <v-card class="mx-auto" outlined>
+  <v-card class="form-card mx-auto" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="BusinessDetails.companyName"
+                v-model="companyName"
                 outlined
                 :rules="rules.companyNameRules"
                 label="Company Name"
@@ -15,7 +15,7 @@
             </v-col>
             <v-col>
               <v-text-field
-                v-model="BusinessDetails.companyLocation"
+                v-model="companyLocation"
                 outlined
                 :rules="rules.companyLocationRules"
                 label="Company Location"
@@ -25,7 +25,7 @@
           </v-row>
           <v-text-field
             outlined
-            v-model="BusinessDetails.companyRevenue"
+            v-model="companyRevenue"
             :rules="rules.companyRevenueRules"
             label="Company Revenue"
             required
@@ -35,16 +35,18 @@
     </v-list-item>
 
     <v-card-actions>
-      <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
-      <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>-->
       <v-spacer></v-spacer>
-      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="reset">Back</v-btn>
-      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="reset">Finish</v-btn>
+      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="backStep">Back</v-btn>
+      <v-btn class="v-btn-primary" color="white" :loading="loading" outlined :ripple="false"  @click="submit">Submit Application</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { mapFields } from "vuex-map-fields";
+import animationShake from "@/animation";
+
 export default {
   data: () => ({
     valid: true,
@@ -59,18 +61,24 @@ export default {
       companyRevenueRules: [v => !!v || "Company revenue is required"]
     }
   }),
-
+  computed: {
+    ...mapState(["loading", "applicationData"]),
+    ...mapFields([
+      "applicationData.companyName",
+      "applicationData.companyLocation",
+      "applicationData.companyRevenue"
+    ])
+  },
   methods: {
-    validate() {
+    backStep() {
+      this.$store.commit("updateActiveStep", 2)
+    },
+    submit() {
       if (this.$refs.form.validate()) {
-        this.snackbar = true;
+        console.log("submit form");
+      } else {
+        animationShake(".form-card")
       }
-    },
-    reset() {
-      this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

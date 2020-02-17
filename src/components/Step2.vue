@@ -1,18 +1,18 @@
 <template>
-  <v-card class="mx-auto" outlined>
+  <v-card class="form-card mx-auto" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             outlined
-            v-model="verificationDetails.nationalId"
+            v-model="nationalId"
             :rules="rules.nationalIdRules"
             label="National ID"
             required
           ></v-text-field>
           <v-text-field
             outlined
-            v-model="verificationDetails.kraPin"
+            v-model="kraPin"
             :rules="rules.kraPinRules"
             label="KRA Pin"
             required
@@ -22,16 +22,19 @@
     </v-list-item>
 
     <v-card-actions>
-      <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
-      <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>-->
       <v-spacer></v-spacer>
-      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="reset">Back</v-btn>
-      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="reset">Next</v-btn>
+      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="backStep">Back</v-btn>
+      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="nextStep">Next</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+
+import { mapState } from "vuex";
+import { mapFields } from "vuex-map-fields";
+import animationShake from "@/animation"; 
+
 export default {
   data: () => ({
     valid: true,
@@ -49,18 +52,23 @@ export default {
       ],
     }
   }),
-
+  computed: {
+    ...mapState(["applicationData"]),
+    ...mapFields([
+      "applicationData.nationalId",
+      "applicationData.kraPin"
+    ])
+  },
   methods: {
-    validate() {
+    nextStep() {
       if (this.$refs.form.validate()) {
-        this.snackbar = true;
-      }
+        this.$store.commit("updateActiveStep", 3)
+      } else {
+        animationShake(".form-card")
+      } 
     },
-    reset() {
-      this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
+    backStep() {
+      this.$store.commit("updateActiveStep", 1)
     }
   }
 };

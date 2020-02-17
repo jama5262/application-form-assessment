@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-stepper v-model="active" alt-labels>
+    <v-stepper v-model="activeStep" alt-labels>
       <template>
         <v-row justify="center">
           <v-col lg="7" md="7" sm="12">
@@ -8,7 +8,7 @@
               <template v-for="(item, index) in steps">
                 <v-stepper-step
                   :key="`${index}-step`"
-                  :complete="active > index"
+                  :complete="activeStep > index"
                   :step="index + 1"
                 >
                   <span class="text-center font-weight-light subtitle-2">{{ item }}</span>
@@ -27,8 +27,6 @@
               <Step1 v-if="index === 0"/>
               <Step2 v-else-if="index === 1"/>
               <Step3 v-else-if="index === 2"/>
-            <v-btn color="primary" @click="nextStep(index + 1)">Continue</v-btn>
-            <v-btn text  @click="backStep(index + 1)">Cancel</v-btn>
           </v-stepper-content>
         </v-stepper-items>
       </template>
@@ -37,7 +35,7 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 import Step1 from "@/components/Step1"
 import Step2 from "@/components/Step2"
 import Step3 from "@/components/Step3"
@@ -45,21 +43,11 @@ import Step3 from "@/components/Step3"
 export default {
   data() {
     return {
-      active: 1,
       steps: ["Personal Details", "Verification Details", "Business Details"],
     };
   },
-  methods: {
-    nextStep(n) {
-      if (n !== this.steps.length) {
-        this.active = n + 1;
-      }
-    },
-    backStep(n) {
-      if (n !== 0) {
-        this.active = n - 1;
-      }
-    }
+  computed: {
+    ...mapState(["activeStep"])
   },
   components: {
     Step1,

@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fill-height>
     <v-row align="center" justify="center">
       <v-col>
         <Stepper />
@@ -12,10 +12,11 @@
 import Stepper from "@/components/Stepper"
 export default {
   components: {
-    Stepper,
+    Stepper
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
 </style>

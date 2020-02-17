@@ -1,15 +1,14 @@
 <template>
-  <div>
-    Home
-  </div>
+  <v-container fill-height fluid>
+    <v-row align="center" justify="center">
+      <v-col md="auto">Jama</v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

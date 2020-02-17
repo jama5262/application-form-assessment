@@ -6,28 +6,28 @@
           <v-row>
             <v-col>
               <v-text-field
-                v-model="personalDetails.firstName"
+                v-model="BusinessDetails.companyName"
                 outlined
-                :rules="rules.firstNameRules"
-                label="First Name"
+                :rules="rules.companyNameRules"
+                label="Company Name"
                 required
               ></v-text-field>
             </v-col>
             <v-col>
               <v-text-field
-                v-model="personalDetails.lastName"
+                v-model="BusinessDetails.companyLocation"
                 outlined
-                :rules="rules.lastNameRules"
-                label="Last Name"
+                :rules="rules.companyLocationRules"
+                label="Company Location"
                 required
               ></v-text-field>
             </v-col>
           </v-row>
           <v-text-field
             outlined
-            v-model="personalDetails.phoneNumber"
-            :rules="rules.emailRules"
-            label="Phone Number"
+            v-model="BusinessDetails.companyRevenue"
+            :rules="rules.companyRevenueRules"
+            label="Company Revenue"
             required
           ></v-text-field>
         </v-form>
@@ -48,23 +48,15 @@
 export default {
   data: () => ({
     valid: true,
-    personalDetails: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      emailAddress: ""
+    BusinessDetails: {
+      companyName: "",
+      companyLocation: "",
+      companyRevenue: ""
     },
     rules: {
-      firstNameRules: [
-        v => !!v || "First name is required"
-      ],
-      lastNameRules: [
-        v => !!v || "Last name is required"
-      ],
-      emailRules: [
-        v => !!v || "Email address is required",
-        v => /.+@.+\..+/.test(v) || "Email address must be valid"
-      ]
+      companyNameRules: [v => !!v || "Company name is required"],
+      companyLocationRules: [v => !!v || "Company location is required"],
+      companyRevenueRules: [v => !!v || "Company revenue is required"]
     }
   }),
 

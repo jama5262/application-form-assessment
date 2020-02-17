@@ -10,7 +10,9 @@
                   :key="`${index}-step`"
                   :complete="active > index"
                   :step="index + 1"
-                >{{ item }}</v-stepper-step>
+                >
+                  <span class="text-center">{{ item }}</span>
+                </v-stepper-step>
 
                 <v-divider v-if="(index + 1) !== steps.length" :key="index"></v-divider>
               </template>

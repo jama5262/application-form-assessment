@@ -26,7 +26,7 @@
           <v-text-field
             outlined
             v-model="personalDetails.phoneNumber"
-            :rules="rules.emailRules"
+            :rules="rules.phoneNumberRules"
             label="Phone Number"
             required
           ></v-text-field>
@@ -45,7 +45,7 @@
       <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
       <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>-->
       <v-spacer></v-spacer>
-      <v-btn color="primary" :ripple="false" @click="reset">Next</v-btn>
+      <v-btn color="primary" dark outlined :ripple="false" @click="reset">Next</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -66,6 +66,10 @@ export default {
       ],
       lastNameRules: [
         v => !!v || "Last name is required"
+      ],
+      phoneNumberRules: [
+        v => !!v || "Last name is required",
+        v => /(\+?2547)\d{8}|(07)\d{8}/.test(v) || "Phone number must be valid"
       ],
       emailRules: [
         v => !!v || "Email address is required",
@@ -90,5 +94,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.v-btn {
+  background-color: green;
+  border: 2px solid red;
+  border-bottom: 5px solid red;
+  border-radius: 7px
+}
+.v-btn:active {
+  background-color: green;
+  transition: none !important;
+  transform: translate(0, 1px);
+  border: 2px solid red;
+  border-bottom: 2px solid red;
+  border-radius: 7px
+}
 </style>

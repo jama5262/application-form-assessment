@@ -5,16 +5,16 @@
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             outlined
-            v-model="personalDetails.phoneNumber"
-            :rules="rules.emailRules"
-            label="Phone Number"
+            v-model="verificationDetails.nationalId"
+            :rules="rules.nationalIdRules"
+            label="National ID"
             required
           ></v-text-field>
           <v-text-field
             outlined
-            v-model="personalDetails.emailAddress"
-            :rules="rules.emailRules"
-            label="Email Address"
+            v-model="verificationDetails.kraPin"
+            :rules="rules.kraPinRules"
+            label="KRA Pin"
             required
           ></v-text-field>
         </v-form>
@@ -35,23 +35,18 @@
 export default {
   data: () => ({
     valid: true,
-    personalDetails: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      emailAddress: ""
+    verificationDetails: {
+      nationalId: "",
+      kraPin: "",
     },
     rules: {
-      firstNameRules: [
-        v => !!v || "First name is required"
+      nationalIdRules: [
+        v => !!v || "Naitional ID is required",
+        v => /\d{5}/.test(v) || "National ID must be valid"
       ],
-      lastNameRules: [
-        v => !!v || "Last name is required"
+      kraPinRules: [
+        v => !!v || "KRA Pin is required"
       ],
-      emailRules: [
-        v => !!v || "Email address is required",
-        v => /.+@.+\..+/.test(v) || "Email address must be valid"
-      ]
     }
   }),
 

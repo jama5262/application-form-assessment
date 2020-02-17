@@ -4,7 +4,7 @@
       <v-list-item-content>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row>
-            <v-col>
+            <v-col cols="12" md="6">
               <v-text-field
                 v-model="personalDetails.firstName"
                 outlined
@@ -45,7 +45,7 @@
       <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
       <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>-->
       <v-spacer></v-spacer>
-      <v-btn color="primary" dark outlined :ripple="false" @click="reset">Next</v-btn>
+      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="reset">Next</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -95,18 +95,4 @@ export default {
 </script>
 
 <style scoped>
-.v-btn {
-  background-color: green;
-  border: 2px solid red;
-  border-bottom: 5px solid red;
-  border-radius: 7px
-}
-.v-btn:active {
-  background-color: green;
-  transition: none !important;
-  transform: translate(0, 1px);
-  border: 2px solid red;
-  border-bottom: 2px solid red;
-  border-radius: 7px
-}
 </style>

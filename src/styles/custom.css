@@ -1,0 +1,29 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.v-btn-primary {
+  background-color: #73BF43;
+  border: 1px solid #5D9937;
+  border-bottom: 3px solid #5D9937;
+  border-radius: 7px;
+}
+.v-btn-primary:active {
+  transition: none !important;
+  transform: translateY(2px);
+  bottom: -.5px;
+  border-bottom: 1px solid #5D9937;
+}
+
+.v-btn-secondary {
+  background-color: white;
+  border: 1px solid #D2D2D2;
+  border-bottom: 3px solid #D2D2D2;
+  border-radius: 7px;
+}
+.v-btn-secondary:active {
+  transition: none !important;
+  transform: translateY(2px);
+  bottom: -.5px;
+  border-bottom: 1px solid #D2D2D2;
+}

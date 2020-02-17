@@ -11,7 +11,7 @@
                   :complete="active > index"
                   :step="index + 1"
                 >
-                  <span class="text-center">{{ item }}</span>
+                  <span class="text-center font-weight-light subtitle-2">{{ item }}</span>
                 </v-stepper-step>
 
                 <v-divider v-if="(index + 1) !== steps.length" :key="index"></v-divider>
@@ -19,17 +19,14 @@
             </v-stepper-header>
           </v-col>
         </v-row>
-
         <v-stepper-items>
           <v-stepper-content
             v-for="(item, index) in steps"
             :key="`${index}-content`"
-            :step="index + 1"
-          >
+            :step="index + 1">
               <Step1 v-if="index === 0"/>
               <Step2 v-else-if="index === 1"/>
               <Step3 v-else-if="index === 2"/>
-
             <v-btn color="primary" @click="nextStep(index + 1)">Continue</v-btn>
             <v-btn text  @click="backStep(index + 1)">Cancel</v-btn>
           </v-stepper-content>

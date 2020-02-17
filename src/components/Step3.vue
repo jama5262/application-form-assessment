@@ -4,7 +4,7 @@
       <v-list-item-content>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row>
-            <v-col>
+            <v-col cols="12" md="6">
               <v-text-field
                 v-model="BusinessDetails.companyName"
                 outlined
@@ -38,8 +38,8 @@
       <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
       <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>-->
       <v-spacer></v-spacer>
-      <v-btn :ripple="false " @click="reset">Back</v-btn>
-      <v-btn color="primary" :ripple="false" @click="reset">Finish</v-btn>
+      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="reset">Back</v-btn>
+      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="reset">Finish</v-btn>
     </v-card-actions>
   </v-card>
 </template>

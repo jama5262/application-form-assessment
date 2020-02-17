@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { getField, updateField } from 'vuex-map-fields';
 
 Vue.use(Vuex)
 
@@ -19,28 +20,21 @@ export default new Vuex.Store({
     loading: false,
     activeStep: 1
   },
-  mutations: {
-  },
   getters: {
-    firstStepData: state => {
-      
+    getField,
+  },
+  mutations: {
+    updateField,
+    updateLoading: (state, loading) => {
+      state.loading = loading
     },
-    secondStepData: state => {
-
+    updateActiveStep: (state, step) => {
+      state.activeStep = step
     },
-    thirdStepData: state => {
-
-    },
-    updateLoading: state => {
-      
-    },
-    updateActiveStep: state => {
-      
-    }
   },
   actions: {
     finishApplication: () => {
-      
+
     }
   },
 })

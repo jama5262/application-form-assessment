@@ -1,12 +1,12 @@
 <template>
-  <v-card class="mx-auto" outlined>
+  <v-card class="form-card mx-auto" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="personalDetails.firstName"
+                v-model="firstName"
                 outlined
                 :rules="rules.firstNameRules"
                 label="First Name"
@@ -15,7 +15,7 @@
             </v-col>
             <v-col>
               <v-text-field
-                v-model="personalDetails.lastName"
+                v-model="lastName"
                 outlined
                 :rules="rules.lastNameRules"
                 label="Last Name"
@@ -25,14 +25,14 @@
           </v-row>
           <v-text-field
             outlined
-            v-model="personalDetails.phoneNumber"
+            v-model="phoneNumber"
             :rules="rules.phoneNumberRules"
             label="Phone Number"
             required
           ></v-text-field>
           <v-text-field
             outlined
-            v-model="personalDetails.emailAddress"
+            v-model="emailAddress"
             :rules="rules.emailRules"
             label="Email Address"
             required
@@ -42,15 +42,16 @@
     </v-list-item>
 
     <v-card-actions>
-      <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
-      <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>-->
       <v-spacer></v-spacer>
-      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="reset">Next</v-btn>
+      <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="nextStep">Next</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+import animationShake from "@/animation";
+
 export default {
   data: () => ({
     valid: true,
@@ -61,12 +62,8 @@ export default {
       emailAddress: ""
     },
     rules: {
-      firstNameRules: [
-        v => !!v || "First name is required"
-      ],
-      lastNameRules: [
-        v => !!v || "Last name is required"
-      ],
+      firstNameRules: [v => !!v || "First name is required"],
+      lastNameRules: [v => !!v || "Last name is required"],
       phoneNumberRules: [
         v => !!v || "Last name is required",
         v => /(\+?2547)\d{8}|(07)\d{8}/.test(v) || "Phone number must be valid"
@@ -77,18 +74,21 @@ export default {
       ]
     }
   }),
-
+  computed: {
+    ...mapFields([
+      "applicationData.firstName",
+      "applicationData.lastName",
+      "applicationData.phoneNumber",
+      "applicationData.emailAddress"
+    ])
+  },
   methods: {
-    validate() {
+    nextStep() {
       if (this.$refs.form.validate()) {
-        this.snackbar = true;
+        this.$store.commit("updateActiveStep", 2);
+      } else {
+        animationShake(".form-card")
       }
-    },
-    reset() {
-      this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

@@ -6,6 +6,7 @@
           <v-row>
             <v-col cols="12" md="6">
               <v-text-field
+                ref="first-name-field"
                 v-model="firstName"
                 outlined
                 :rules="rules.firstNameRules"
@@ -15,6 +16,7 @@
             </v-col>
             <v-col>
               <v-text-field
+                ref="last-name-field"
                 v-model="lastName"
                 outlined
                 :rules="rules.lastNameRules"
@@ -24,6 +26,7 @@
             </v-col>
           </v-row>
           <v-text-field
+            ref="phone-number-field"
             outlined
             v-model="phoneNumber"
             :rules="rules.phoneNumberRules"
@@ -31,6 +34,7 @@
             required
           ></v-text-field>
           <v-text-field
+            ref="email-address-field"
             outlined
             v-model="emailAddress"
             :rules="rules.emailRules"
@@ -55,12 +59,6 @@ import animationShake from "@/animation";
 export default {
   data: () => ({
     valid: true,
-    personalDetails: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      emailAddress: ""
-    },
     rules: {
       firstNameRules: [v => !!v || "First name is required"],
       lastNameRules: [v => !!v || "Last name is required"],
@@ -87,12 +85,9 @@ export default {
       if (this.$refs.form.validate()) {
         this.$store.commit("updateActiveStep", 2);
       } else {
-        animationShake(".form-card")
+        animationShake(".form-card");
       }
     }
   }
 };
 </script>
-
-<style scoped>
-</style>

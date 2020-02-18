@@ -10,6 +10,7 @@
   "dependencies": {
     "animejs": "^3.1.0",
     "core-js": "^3.6.4",
+    "coveralls": "^3.0.9",
     "vue": "^2.6.11",
     "vuetify": "^2.2.11",
     "vuex": "^3.1.2",
@@ -32,6 +33,15 @@
     "last 2 versions"
   ],
   "jest": {
-    "preset": "@vue/cli-plugin-unit-jest"
+    "preset": "@vue/cli-plugin-unit-jest",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!animejs)"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/components/*.vue",
+      "<rootDir>/src/store/*.js",
+      "!**/node_modules/**"
+    ]
   }
 }

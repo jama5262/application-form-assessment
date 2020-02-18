@@ -7,7 +7,7 @@ A simple vuejs loan application form
 
 Demo |
 ------------ |
-<img src="https://github.com/jama5262/application-form-assessment/blob/develop/src/gif/image1.gif" alt="alt text" height="500px">
+<img src="https://github.com/jama5262/application-form-assessment/blob/develop/src/gif/image1.gif" alt="alt text" height="500px"> |
 
 ## Installation
 

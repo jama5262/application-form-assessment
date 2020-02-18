@@ -4,6 +4,14 @@ import { getField, updateField } from 'vuex-map-fields';
 
 Vue.use(Vuex)
 
+export const finishApplication = ({ commit }) => {
+  commit("updateLoading", true)
+  setTimeout(function () {
+    commit("updateLoading", false)
+    commit("updateCompleted", true)
+  }, 2000);
+}
+
 export default new Vuex.Store({
   state: {
     applicationData: {
@@ -37,12 +45,6 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    finishApplication: ({ commit }) => {
-      commit("updateLoading", true)
-      setTimeout(function () {
-        commit("updateCompleted", true)
-        commit("updateLoading", false)
-      }, 2000);
-    }
+    finishApplication
   },
 })

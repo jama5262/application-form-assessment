@@ -1,0 +1,7 @@
+version: "3"
+
+services: 
+  web-app:
+    image: jama5262/application-form-assessment
+    ports: 
+      - 8080:80

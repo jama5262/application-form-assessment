@@ -5,9 +5,9 @@ A simple vuejs loan application form
 
 ## Demos
 
-Success | Unknown Cities
------------- | ------------
-<img src="https://github.com/jama5262/weather-app/blob/develop/src/gif/image1.gif" alt="alt text" height="500px"> | <img src="https://github.com/jama5262/weather-app/blob/develop/src/gif/image2.gif" alt="alt text" height="500px">
+Demo |
+------------ |
+<img src="https://github.com/jama5262/application-form-assessment/blob/develop/src/gif/image1.gif" alt="alt text" height="500px">
 
 ## Installation
 

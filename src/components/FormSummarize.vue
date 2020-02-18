@@ -70,7 +70,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-card-actions>
+    <v-card-actions v-if="!completed">
       <v-spacer></v-spacer>
       <v-btn
         class="v-btn-secondary"

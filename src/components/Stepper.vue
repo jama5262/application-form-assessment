@@ -3,7 +3,7 @@
     <v-stepper v-model="activeStep" alt-labels>
       <template>
         <v-row justify="center">
-          <v-col lg="7" md="7" sm="12">
+          <v-col lg="8" md="8" sm="12" xs="12" class="pa-0">
             <v-stepper-header>
               <template v-for="(item, index) in steps">
                 <v-stepper-step
@@ -24,9 +24,10 @@
             v-for="(item, index) in steps"
             :key="`${index}-content`"
             :step="index + 1">
-              <Step1 v-if="index === 0"/>
-              <Step2 v-else-if="index === 1"/>
-              <Step3 v-else-if="index === 2"/>
+              <PersonalDetails v-if="index === 0"/>
+              <VerificationDetails v-else-if="index === 1"/>
+              <BusinessDetails v-else-if="index === 2"/>
+              <FormSummarize v-else-if="index === 3"/>
           </v-stepper-content>
         </v-stepper-items>
       </template>
@@ -36,23 +37,25 @@
 
 <script>
 import { mapState } from 'vuex'
-import Step1 from "@/components/Step1"
-import Step2 from "@/components/Step2"
-import Step3 from "@/components/Step3"
+import PersonalDetails from "@/components/PersonalDetails"
+import VerificationDetails from "@/components/VerificationDetails"
+import BusinessDetails from "@/components/BusinessDetails"
+import FormSummarize from "@/components/FormSummarize"
 
 export default {
   data() {
     return {
-      steps: ["Personal Details", "Verification Details", "Business Details"],
+      steps: ["Personal Details", "Verification Details", "Business Details", "Summarize"],
     };
   },
   computed: {
     ...mapState(["activeStep"])
   },
   components: {
-    Step1,
-    Step2,
-    Step3,
+    PersonalDetails,
+    VerificationDetails,
+    BusinessDetails,
+    FormSummarize,
   },
 };
 </script>

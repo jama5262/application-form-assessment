@@ -37,7 +37,7 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="backStep">Back</v-btn>
-      <v-btn class="v-btn-primary" color="white" :loading="loading" outlined :ripple="false"  @click="submit">Submit Application</v-btn>
+      <v-btn class="v-btn-primary" color="white" :loading="loading" outlined :ripple="false"  @click="submit">Confirm</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -75,7 +75,7 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        console.log("submit form");
+        this.$store.commit("updateActiveStep", 4)
       } else {
         animationShake(".form-card")
       }

@@ -15,15 +15,15 @@ export const finishApplication = ({ commit }) => {
 export default new Vuex.Store({
   state: {
     applicationData: {
-      firstName: "Jama",
-      lastName: "Mohamed",
-      phoneNumber: "+2540790749401",
-      emailAddress: "jama3137@gmail.com",
-      nationalId: "12345678",
-      kraPin: "AAA12345",
-      companyName: "JM Studios",
-      companyLocation: "Nairobi",
-      companyRevenue: "20000"
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      nationalId: "",
+      kraPin: "",
+      companyName: "",
+      companyLocation: "",
+      companyRevenue: ""
     },
     loading: false,
     completed: false,

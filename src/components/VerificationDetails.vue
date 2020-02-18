@@ -5,6 +5,7 @@
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             outlined
+            ref="national-id-field"
             v-model="nationalId"
             :rules="rules.nationalIdRules"
             label="National ID"
@@ -12,6 +13,7 @@
           ></v-text-field>
           <v-text-field
             outlined
+            ref="kra-pin-field"
             v-model="kraPin"
             :rules="rules.kraPinRules"
             label="KRA Pin"
@@ -23,56 +25,54 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="backStep">Back</v-btn>
+      <v-btn
+        class="v-btn-secondary"
+        color="primary"
+        outlined
+        ref="v-btn-back"
+        :ripple="false"
+        @click.native="backStep"
+      >Back</v-btn>
       <v-btn class="v-btn-primary" color="white" outlined :ripple="false" @click="nextStep">Next</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-
 import { mapState } from "vuex";
 import { mapFields } from "vuex-map-fields";
-import animationShake from "@/animation"; 
+import animationShake from "@/animation";
 
 export default {
   data: () => ({
     valid: true,
     verificationDetails: {
       nationalId: "",
-      kraPin: "",
+      kraPin: ""
     },
     rules: {
       nationalIdRules: [
         v => !!v || "Naitional ID is required",
         v => /\d{5}/.test(v) || "National ID must be valid"
       ],
-      kraPinRules: [
-        v => !!v || "KRA Pin is required"
-      ],
+      kraPinRules: [v => !!v || "KRA Pin is required"]
     }
   }),
   computed: {
     ...mapState(["applicationData"]),
-    ...mapFields([
-      "applicationData.nationalId",
-      "applicationData.kraPin"
-    ])
+    ...mapFields(["applicationData.nationalId", "applicationData.kraPin"])
   },
   methods: {
     nextStep() {
       if (this.$refs.form.validate()) {
-        this.$store.commit("updateActiveStep", 3)
+        this.$store.commit("updateActiveStep", 3);
       } else {
-        animationShake(".form-card")
-      } 
+        animationShake(".form-card");
+      }
     },
     backStep() {
-      this.$store.commit("updateActiveStep", 1)
+      this.$store.commit("updateActiveStep", 1);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

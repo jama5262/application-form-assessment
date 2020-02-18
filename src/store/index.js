@@ -19,7 +19,7 @@ export default new Vuex.Store({
       lastName: "Mohamed",
       phoneNumber: "+2540790749401",
       emailAddress: "jama3137@gmail.com",
-      nationalId: "34341916",
+      nationalId: "12345678",
       kraPin: "AAA12345",
       companyName: "JM Studios",
       companyLocation: "Nairobi",

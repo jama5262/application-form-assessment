@@ -23,11 +23,12 @@
           <v-stepper-content
             v-for="(item, index) in steps"
             :key="`${index}-content`"
-            :step="index + 1">
-              <PersonalDetails v-if="index === 0"/>
-              <VerificationDetails v-else-if="index === 1"/>
-              <BusinessDetails v-else-if="index === 2"/>
-              <FormSummarize v-else-if="index === 3"/>
+            :step="index + 1"
+          >
+            <PersonalDetails :ref="'step-component-' + index" v-if="index === 0" />
+            <VerificationDetails :ref="'step-component-' + index" v-else-if="index === 1" />
+            <BusinessDetails :ref="'step-component-' + index" v-else-if="index === 2" />
+            <FormSummarize :ref="'step-component-' + index" v-else-if="index === 3" />
           </v-stepper-content>
         </v-stepper-items>
       </template>
@@ -36,16 +37,21 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import PersonalDetails from "@/components/PersonalDetails"
-import VerificationDetails from "@/components/VerificationDetails"
-import BusinessDetails from "@/components/BusinessDetails"
-import FormSummarize from "@/components/FormSummarize"
+import { mapState } from "vuex";
+import PersonalDetails from "@/components/PersonalDetails";
+import VerificationDetails from "@/components/VerificationDetails";
+import BusinessDetails from "@/components/BusinessDetails";
+import FormSummarize from "@/components/FormSummarize";
 
 export default {
   data() {
     return {
-      steps: ["Personal Details", "Verification Details", "Business Details", "Summarize"],
+      steps: [
+        "Personal Details",
+        "Verification Details",
+        "Business Details",
+        "Summarize"
+      ]
     };
   },
   computed: {
@@ -55,8 +61,8 @@ export default {
     PersonalDetails,
     VerificationDetails,
     BusinessDetails,
-    FormSummarize,
-  },
+    FormSummarize
+  }
 };
 </script>
 

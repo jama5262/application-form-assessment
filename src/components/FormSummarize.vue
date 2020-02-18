@@ -11,22 +11,22 @@
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">First Name</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.firstName }}</span>
+                <span ref="first-name" class="font-weight-black">{{ applicationData.firstName }}</span>
               </v-col>
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">Last Name</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.lastName }}</span>
+                <span ref="last-name" class="font-weight-black">{{ applicationData.lastName }}</span>
               </v-col>
               <v-col xs="12" sm="12" md="6">
                 <span class="caption">Phone Number</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.phoneNumber }}</span>
+                <span ref="phone-number" class="font-weight-black">{{ applicationData.phoneNumber }}</span>
               </v-col>
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">Email Address</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.emailAddress }}</span>
+                <span ref="email-address" class="font-weight-black">{{ applicationData.emailAddress }}</span>
               </v-col>
             </v-row>
             <v-row>
@@ -36,12 +36,12 @@
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">National ID</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.nationalId }}</span>
+                <span ref="company-name" class="font-weight-black">{{ applicationData.nationalId }}</span>
               </v-col>
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">KRA Pin</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.kraPin }}</span>
+                <span ref="company-location" class="font-weight-black">{{ applicationData.kraPin }}</span>
               </v-col>
             </v-row>
             <v-row>
@@ -51,17 +51,17 @@
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">Company Name</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.companyName }}</span>
+                <span ref="company-revenue" class="font-weight-black">{{ applicationData.companyName }}</span>
               </v-col>
               <v-col xs="12" sm="6" md="6">
                 <span class="caption">Company Location</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.companyLocation }}</span>
+                <span ref="national-id" class="font-weight-black">{{ applicationData.companyLocation }}</span>
               </v-col>
               <v-col cols="12">
                 <span class="caption">Company Revenue</span>
                 <br />
-                <span class="font-weight-black">{{ applicationData.companyRevenue }}</span>
+                <span ref="kra-pin" class="font-weight-black">{{ applicationData.companyRevenue }}</span>
               </v-col>
             </v-row>
           </div>
@@ -76,8 +76,9 @@
         class="v-btn-secondary"
         color="primary"
         outlined
+        ref="v-btn-back"
         :ripple="false "
-        @click="backStep"
+        @click.native="backStep"
       >Back</v-btn>
       <v-btn
         class="v-btn-primary"
@@ -97,19 +98,6 @@ import { mapFields } from "vuex-map-fields";
 import Complete from "@/components/Complete";
 
 export default {
-  data: () => ({
-    valid: true,
-    BusinessDetails: {
-      companyName: "",
-      companyLocation: "",
-      companyRevenue: ""
-    },
-    rules: {
-      companyNameRules: [v => !!v || "Company name is required"],
-      companyLocationRules: [v => !!v || "Company location is required"],
-      companyRevenueRules: [v => !!v || "Company revenue is required"]
-    }
-  }),
   computed: {
     ...mapState(["loading", "completed", "applicationData"]),
     ...mapFields([
@@ -134,7 +122,7 @@ export default {
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>

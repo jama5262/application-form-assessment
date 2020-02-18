@@ -6,6 +6,7 @@
           <v-row>
             <v-col cols="12" md="6">
               <v-text-field
+                ref="company-name-field"
                 v-model="companyName"
                 outlined
                 :rules="rules.companyNameRules"
@@ -15,6 +16,7 @@
             </v-col>
             <v-col>
               <v-text-field
+                ref="company-location-field"
                 v-model="companyLocation"
                 outlined
                 :rules="rules.companyLocationRules"
@@ -24,6 +26,7 @@
             </v-col>
           </v-row>
           <v-text-field
+            ref="company-revenue-field"
             outlined
             v-model="companyRevenue"
             :rules="rules.companyRevenueRules"
@@ -36,8 +39,8 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="v-btn-secondary" color="primary" outlined :ripple="false " @click="backStep">Back</v-btn>
-      <v-btn class="v-btn-primary" color="white" :loading="loading" outlined :ripple="false"  @click="submit">Confirm</v-btn>
+      <v-btn ref="v-btn-back" class="v-btn-secondary" color="primary" outlined :ripple="false " @click.native="backStep">Back</v-btn>
+      <v-btn ref="v-btn-next" class="v-btn-primary" color="white" :loading="loading" outlined :ripple="false"  @click.native="submit">Confirm</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -50,11 +53,6 @@ import animationShake from "@/animation";
 export default {
   data: () => ({
     valid: true,
-    BusinessDetails: {
-      companyName: "",
-      companyLocation: "",
-      companyRevenue: ""
-    },
     rules: {
       companyNameRules: [v => !!v || "Company name is required"],
       companyLocationRules: [v => !!v || "Company location is required"],
@@ -83,6 +81,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
